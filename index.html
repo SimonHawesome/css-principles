@@ -1,49 +1,102 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+	<title>Intro to Greensock!</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<p>Tech Talk (February 14th, 2019)</p>
+				<h3>Intro to Greensock animations!</h3>
+			</section>
+			<section>
+				<img src="images/greensock-logo.svg" />
+			</section>
+			<section>
+				<h3>What is GreenSock?</h3>
+				<ul>
+					<li class="fragment" data-fragment-index="1">A third party animation library</li>
+					<li class="fragment" data-fragment-index="2">Adds flare to your designs</li>
+				</ul>
+			</section>
+			<section>
+				<h3>3 Main components</h3>
+				<ul>
+					<li class="fragment" data-fragment-index="1">Tweens</li>
+					<li class="fragment" data-fragment-index="2">Timelines</li>
+					<li class="fragment" data-fragment-index="3">Easing</li>
+				</ul>
+			</section>
+			<div class="reveal">
+				<div class="slides">
+					<section>
+						<section>
+							<h3>Tweens</h3>
+							<p>w/ TweenLite</p>
+						</section>
+						<section>
+							<h3>Import into your component</h3>
+							<pre>
+								<code data-trim>
+									...
+									// Right under imports
+									declare var TweenLite: any;
+									...
+								</code>
+							</pre>
+						</section>
+						<section>
+							
+						</section>
+						<section>Vertical Slide 2</section>
+					</section>
+				</div>
 			</div>
 		</div>
+	</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+	<script src="lib/js/gsap/src/minified/easing/EasePack.min.js"></script>
+	<script src="lib/js/gsap/src/minified/jquery.gsap.min.js"></script>
+	<script src="lib/js/gsap/src/minified/TweenLite.min.js"></script>
+	<script src="lib/js/gsap/src/minified/TimelineLite.min.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			fragments: true,
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+</body>
+
 </html>
