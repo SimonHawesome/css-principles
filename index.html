@@ -49,28 +49,30 @@
 					<li class="fragment" data-fragment-index="3">Easing</li>
 				</ul>
 			</section>
-			<div class="reveal">
-				<div class="slides">
-					<section>
-						<section>
-							<h3>Tweens</h3>
-							<p>w/ TweenMax</p>
-						</section>
-						<section>
-							<p>Click meh! <button id="resetTweenBoxBtn">Reset</button></p>
 
-							<div class="greensockPlayground-container">
-								<div id="tweenBox" class="tweenBox">
-									<p>How dare!</p>
-								</div>
-							</div>
-						</section>
-						<section>
-							How can I does?!
-						</section>
-						<section>
-							<p>Import into your Angular component</p>
-							<pre>
+			<section>
+				<section>
+					<h3>Tweens</h3>
+					<p>w/ TweenMax</p>
+				</section>
+				<section>
+					<p>
+						<button id="animateTweenBoxBtn">Click Meh!</button>
+						<button id="resetTweenBoxBtn">Reset</button>
+					</p>
+
+					<div class="greensockPlayground-container">
+						<div id="tweenBox" class="box">
+							<p>How dare!</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					How can I does?!
+				</section>
+				<section>
+					<p>Import into your Angular component</p>
+					<pre>
 								<code data-trim>
 									...
 									// Right under Angular imports
@@ -78,10 +80,10 @@
 									...
 								</code>
 							</pre>
-						</section>
-						<section>
-							<p>Tween it out with:</p>
-							<pre>
+				</section>
+				<section>
+					<p>Tween it out with:</p>
+					<pre>
 								<code data-trim>
 										TweenMax.to('#tweenBox', 2, { 
 											marginLeft: '400px', 
@@ -98,10 +100,10 @@
 										});
 								</code>
 							</pre>
-						</section>
-						<section>
-							<p>Bring it on back with:</p>
-							<pre>
+				</section>
+				<section>
+					<p>Bring it on back with:</p>
+					<pre>
 								<code data-trim>
 										TweenMax.set('#tweenBox', { 
 											marginLeft: '0px', 
@@ -116,19 +118,19 @@
 										});
 								</code>
 							</pre>
-						</section>
-						<section>
-							<p>Default CSS, who dis?</p>
-							<pre>
+				</section>
+				<section>
+					<p>Default CSS, who dis?</p>
+					<pre>
 								<code data-trim>
-										.tweenBox {
+										.box {
 											background-color: white;
 											height: 150px;
 											margin-left: 0px;
 											width: 150px;
 										}
 										
-										.tweenBox p {
+										.box p {
 											color: black;
 											line-height: 150px;
 											text-align: center;
@@ -136,10 +138,107 @@
 										}
 								</code>
 							</pre>
-						</section>
-					</section>
-				</div>
-			</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Timelines</h3>
+					<p>w/ TimelineMax</p>
+				</section>
+				<section>
+					<h4>Sequential animations</h4>
+					<p>
+						<button id="animateTimelineBoxBtn">Click Meh!</button>
+						<button id="resetTimelineBoxBtn">Reset</button>
+					</p>
+
+					<div class="greensockPlayground-container">
+						<div id="timelineBox" class="box">
+							<p class="fancy">How dare I!?!?!?!</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					How can I does?!
+				</section>
+				<section>
+					<p>Timeline it out with:</p>
+					<pre>
+						<code data-trim>
+							let tl = new TimelineMax();
+
+							tl.to('#timelineBox', 1, { 
+								marginLeft: '400px',
+								marginTop: '100px'
+							 })
+								.to('#timelineBox', 1, {
+									rotation: 720,
+									transformOrigin: "50% 50%",
+								})
+								.to('#timelineBox', 0.5, { backgroundColor: 'yellow' })
+								.to('#timelineBox', 0.5, { width: '400px', height: '50px' })
+								.to('#timelineBox', 1, {
+									backgroundColor: 'blue',
+									rotation: 360,
+									marginLeft: '100px',
+									onComplete: () => {
+										TweenMax.to('#timelineBox p', 0.5, {
+											color: 'white',
+											opacity: 1,
+											lineHeight: '50px'
+										});
+									}
+								});
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>Bring it on back with:</p>
+					<pre>
+						<code data-trim>
+							TweenMax.set('#timelineBox', {
+								marginLeft: '0px',
+								marginTop: '0px',
+								backgroundColor: 'white',
+								height: '150px',
+								width: '150px',
+								rotation: 0,
+								transformOrigin: "50% 50%"
+							});
+
+							TweenMax.set('#timelineBox p', {
+								opacity: 0,
+								lineHeight: '150px'
+							});
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>Default CSS, who dis?</p>
+					<pre>
+						<code data-trim>
+							.box {
+								background-color: white;
+								height: 150px;
+								margin-left: 0px;
+								width: 150px;
+							}
+							
+							.box p {
+								color: black;
+								line-height: 150px;
+								text-align: center;
+								opacity: 0;
+							}
+							
+							.box p.fancy {
+								font-family: "Comic Sans MS", cursive, sans-serif;
+								font-size: 18px;
+							}
+						</code>
+					</pre>
+				</section>
 		</div>
 	</div>
 
@@ -155,8 +254,8 @@
 	<script>
 		// Greensock scripts
 
-		// TweenLite
-		document.getElementById('tweenBox').addEventListener("click", () => {
+		// TweenMax
+		document.getElementById('animateTweenBoxBtn').addEventListener("click", () => {
 
 			TweenMax.to('#tweenBox', 2, {
 				marginLeft: '400px',
@@ -186,6 +285,53 @@
 
 			TweenMax.set('#tweenBox p', {
 				opacity: 0
+			});
+		});
+
+
+		document.getElementById('animateTimelineBoxBtn').addEventListener("click", () => {
+
+			// TimelineMax
+			let tl = new TimelineMax();
+			tl.to('#timelineBox', 1, {
+				marginLeft: '400px',
+				marginTop: '100px'
+			})
+				.to('#timelineBox', 1, {
+					rotation: 720,
+					transformOrigin: "50% 50%",
+				})
+				.to('#timelineBox', 0.5, { backgroundColor: 'yellow' })
+				.to('#timelineBox', 0.5, { width: '400px', height: '50px' })
+				.to('#timelineBox', 1, {
+					backgroundColor: 'blue',
+					rotation: 360,
+					marginLeft: '100px',
+					onComplete: () => {
+						TweenMax.to('#timelineBox p', 0.5, {
+							color: 'white',
+							opacity: 1,
+							lineHeight: '50px'
+						});
+					}
+				});
+		});
+
+		document.getElementById('resetTimelineBoxBtn').addEventListener("click", () => {
+
+			TweenMax.set('#timelineBox', {
+				marginLeft: '0px',
+				marginTop: '0px',
+				backgroundColor: 'white',
+				height: '150px',
+				width: '150px',
+				rotation: 0,
+				transformOrigin: "50% 50%"
+			});
+
+			TweenMax.set('#timelineBox p', {
+				opacity: 0,
+				lineHeight: '150px'
 			});
 		});
 
