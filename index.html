@@ -8,7 +8,7 @@
 	<title>Intro to Greensock!</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
-	<link rel="stylesheet" href="css/theme/black.css">
+	<link rel="stylesheet" href="css/theme/night.css">
 	<link rel="stylesheet" href="css/greensock-custom-scripts.css">
 
 	<!-- Theme used for syntax highlighting of code -->
@@ -30,6 +30,8 @@
 			<section>
 				<p>Tech Talk (February 14th, 2019)</p>
 				<h3>Intro to Greensock animations!</h3>
+				<br>
+				<p>by: Simon Ha</p>
 			</section>
 			<section>
 				<img src="images/greensock-logo.svg" />
@@ -56,6 +58,7 @@
 					<p>w/ TweenMax</p>
 				</section>
 				<section>
+					<h4>Simple animation</h4>
 					<p>
 						<button id="animateTweenBoxBtn">Click Meh!</button>
 						<button id="resetTweenBoxBtn">Reset</button>
@@ -163,7 +166,18 @@
 					How can I does?!
 				</section>
 				<section>
-					<p>Timeline it out with:</p>
+					<p>Import into your Angular component</p>
+					<pre>
+						<code data-trim>
+							...
+							// Right under Angular imports
+							declare var TimelineMax: any;
+							...
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>Chain it out with:</p>
 					<pre>
 						<code data-trim>
 							let tl = new TimelineMax();
@@ -239,6 +253,75 @@
 						</code>
 					</pre>
 				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Easing</h3>
+				</section>
+				<section>
+					<div class="greensockPlayground-container">
+						<p>
+							<button id="animateEaseBoxBtn">Click Meh!</button>
+							<button id="resetEaseBoxBtn">Reset</button>
+						</p>
+						<p>Ease In</p>
+						<div id="easeBox1" class="box easeBox">
+						</div>
+						<p>Ease Out</p>
+						<div id="easeBox2" class="box easeBox">
+						</div>
+						<p>Bounce</p>
+						<div id="easeBox3" class="box easeBox">
+						</div>
+					</div>
+				</section>
+				<section>
+					How can I does?!
+				</section>
+				<section>
+					<p>Import into your Angular component</p>
+					<pre>
+						<code data-trim>
+							...
+							// Right under Angular imports
+							declare var Power2: any;
+							declare var Bounce: any;
+							...
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>Take it ease-y with:</p>
+					<pre>
+						<code data-trim>
+							TweenMax.to('#easeBox1', 1, {
+								marginLeft: '600px',
+								ease: Power2.easeIn
+							});
+				
+							TweenMax.to('#easeBox2', 1, {
+								marginLeft: '600px',
+								ease: Power2.easeOut
+							});
+				
+							TweenMax.to('#easeBox3', 1, {
+								marginLeft: '600px',
+								ease: Bounce.easeOut
+							});
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>Lots of possibilities</p>
+					<a href="https://greensock.com/docs/Easing" target="_blank">Ease Visualizer</a>
+				</section>
+			</section>
+			<section>
+				<h4>Coming soon in GNet Template...</h4>
+			</section>
+			<section>
+				<h4>Fin.</h4>
+			</section>
 		</div>
 	</div>
 
@@ -335,11 +418,48 @@
 			});
 		});
 
+
+		// Easing
+		document.getElementById('animateEaseBoxBtn').addEventListener("click", () => {
+
+			TweenMax.to('#easeBox1', 1, {
+				marginLeft: '600px',
+				ease: Power2.easeIn
+			});
+
+			TweenMax.to('#easeBox2', 1, {
+				marginLeft: '600px',
+				ease: Power2.easeOut
+			});
+
+			TweenMax.to('#easeBox3', 1, {
+				marginLeft: '600px',
+				ease: Bounce.easeOut
+			});
+		});
+
+
+		document.getElementById('resetEaseBoxBtn').addEventListener("click", () => {
+
+			TweenMax.set('#easeBox1', {
+				marginLeft: '0px'
+			});
+
+			TweenMax.set('#easeBox2', {
+				marginLeft: '0px'
+			});
+
+			TweenMax.set('#easeBox3', {
+				marginLeft: '0px'
+			});
+		});
+
 		// More info about config & dependencies:
 		// - https://github.com/hakimel/reveal.js#configuration
 		// - https://github.com/hakimel/reveal.js#dependencies
 		Reveal.initialize({
 			fragments: true,
+			backgroundTransition: 'concave',
 			dependencies: [
 				{ src: 'plugin/markdown/marked.js' },
 				{ src: 'plugin/markdown/markdown.js' },
