@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>CSS Principles - Tech Talk</title>
+	<title>Code Commenting Principles - Tech Talk</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/night.css">
@@ -28,153 +28,88 @@
 	<div class="reveal">
 		<div class="slides">
 			<section>
-				<p>Tech Talk (April 4th, 2019)</p>
-				<h3>CSS Principles</h3>
+				<p>Code Commenting Principles (June 13th, 2019)</p>
+				<h3>Code Commenting Principles</h3>
 				<br>
 				<p>by: Simon Ha</p>
 			</section>
 			<section>
-				<h3>3 Topics of the day</h3>
-				<ul>
-					<li class="fragment" data-fragment-index="1">Terminology</li>
-					<li class="fragment" data-fragment-index="2">Performance</li>
-					<li class="fragment" data-fragment-index="3">Ordering</li>
-				</ul>
+				<p>The goal is not to have to leave comments.</p>
+				<p class="fragment" data-fragment-index="1">But...</p>
+				<p class="fragment" data-fragment-index="2">there are still times when you should leave comments.</p>
 			</section>
 			<section>
-				<section>
-					<h3>Terminology</h3>
+					<h3>Two main focuses</h3>
+					<ul>
+						<li>What are bad comments?</li>
+						<li>What are good comments?</li>
+					</ul>
 				</section>
-				<section>
-					<h4>Descendant Combinator</h4>
-					<pre>
-						<code data-trim>
-							// The white space between ul and li
+			<section>
+					<section>
+							<h3>Bad comments</h3>
+							<p>Here's a practical example</p>
+						</section>
+					<section>
+							<h4>Old, unused code</h4>
+						</section>
+<section>
+<pre><code class="hljs">
+ngOnInit() {
+  this.loadKeyTypes();
+}
 
-							ul li {
-								background-color: $sweet-baby-blue
-							}
-						</code>
-					</pre>
-				</section>
-				<section>
-					<h4>The Big 3 Browser Rendering Terms</h4>
-					<p>Layout > Paint > Composite</p>
-				</section>
-				<section>
-					<h4>Layout <span class="grey-out">> Paint > Composite</span></h4>
-					<ul>
-							<li class="fragment" data-fragment-index="1">Calculation of how much space an element takes on the screen. 
-									<br>Geometric properties: width, height, display, font-size, top, left...etc</li>
-							<li class="fragment" data-fragment-index="2">When modified, the browser will have to "reflow" the page</li>
-							<li class="fragment" data-fragment-index="3">"Reflow" means also repainting and compositing the affected areas</li>
-						</ul>
-				</section>
-				<section>
-					<h4><span class="grey-out">Layout ></span> Paint <span class="grey-out">> Composite</span></h4>
-					<ul>
-							<li class="fragment" data-fragment-index="1">Fills visual elements (color, background, border-colors)</li>
-							<li class="fragment" data-fragment-index="2">Can skip layout, but causes a recomposition</li>
-							<li class="fragment" data-fragment-index="3">Most expensive $$$</li>
-						</ul>
-				</section>
-				<section>
-					<h4><span class="grey-out">Layout > Paint > </span> Composite</h4>
-					<ul>
-						<li class="fragment" data-fragment-index="1">Draws layers in the intended order i.e. overlapping elements</li>
-						<li class="fragment" data-fragment-index="2">Any style modification requires a recomposition</li>
-						<li class="fragment" data-fragment-index="3">..but z-index still needs a repaint</li>
-					</ul>
-				</section>
-				<section>
-					<h4>Browser Rendering Engines</h4>
-					<ul>
-						<li class="fragment" data-fragment-index="1">Blink => Chrome</li>
-						<li class="fragment" data-fragment-index="2">Gecko => Firefox</li>
-						<li class="fragment" data-fragment-index="3">Webkit => Safari</li>
-						<li class="fragment" data-fragment-index="4">EdgeHTML => Microsoft Edge</li>
-						<li class="fragment" data-fragment-index="5"><a href="https://csstriggers.com/" 
-							target="_blank">CSS Triggers!</a></li>
-					</ul>
-					
-				</section>
-			</section>
-			<section>
-				<section>
-					<h3>Let's talk performance</h3>
-					<p>...baby!</p>
-				</section>
-				<section>
-					<h4>Browser reads selectors from right to left</h4>
-					<pre>
-						<code data-trim>
-							.container ul li a { }
-						</code>
-					</pre>
-					<ul>
-						<li class="fragment" data-fragment-index="1">Match every 'a' tag</li>
-						<li class="fragment" data-fragment-index="2">Find every 'a' contained in 'li'</li>
-						<li class="fragment" data-fragment-index="3">Use previous matches and find ones contained in 'ul'</li>
-						<li class="fragment" data-fragment-index="4">Finally, filter down the matches contained in '.container'</li>
-						<li class="fragment" data-fragment-index="5">It's expensive AF, bud.</li>
-					</ul>
-				</section>
-				<section>
-					<pre>
-						<code data-trim>
-							// Skip all that by adding a specific class to the 'a' tag
+loadKeyTypes(): void {
 
-							<a class='container-link'></a>
+  this.keyTypeGridService.read();
+  this.view = this.keyTypeGridService.pipe(map
+	(data => process(data, this.gridState)));
 
-							.container-link { }
-						</code>
-					</pre>
+  this.scrollToTop();
+}
+</code></pre>
+			</section>
+			<section>
+<pre><code class="hljs">
+ngOnInit() {
+  // this.loadKeyTypes();
+}
+
+// loadKeyTypes(): void {
+
+  // this.keyTypeGridService.read();
+  // this.view = this.keyTypeGridService.pipe(map
+	   // (data => process(data, this.gridState))
+	 // );
+
+  // this.scrollToTop();
+// }
+</code></pre>
+			</section>
+			<section>
+				<p>Just delete it, bra.</p>
+				<p class="fragment" data-fragment-index="1">If you need it again, that's what Git is for.</p>
+				<p class="fragment" data-fragment-index="2">Next person: "Is this important? Should I leave it in?"</p>
+			</section>
+		</section>
+		
+		<section>
+				<section>
+					<h3>Good comments</h3>
 					<ul>
-						<li class="fragment" data-fragment-index="1">But that could cause unnecessary code bloat.</li>
-						<li class="fragment" data-fragment-index="2">Lots of people say this isn't a big deal in the first place</li>
+						<li class="fragment" data-fragment-index="1">Short and concise</li>
+						<li class="fragment" data-fragment-index="2">Maintainable</li>
+						<li class="fragment" data-fragment-index="3">Clarifies code that has a business <br>purpose but looks out of place</li>
+						<li class="fragment" data-fragment-index="4">Legally required</li>
 					</ul>
 				</section>
 				<section>
-					<h4>Some of the most expensive CSS properties</h4>
-					<ul>
-						<li class="fragment" data-fragment-index="1">border-radius</li>
-						<li class="fragment" data-fragment-index="2">box-shadow</li>
-						<li class="fragment" data-fragment-index="3">filter</li>
-						<li class="fragment" data-fragment-index="4">position: fixed</li>
-					</ul>
-				</section>
-				<section>
-					<h4>...but you can still use them!</h4>
-					<p>Just be wary of how many times the property is rendered i.e. hundreds of times vs. 20 times</p>
-				</section>
+						<h3>Here's a zample...</h3>
+					</section>
 			</section>
 			<section>
-				<section>
-					<h3>Ordering</h3>
+					<h3>Fin.</h3>
 				</section>
-				<section>
-					<pre>
-						<code data-trim>
-							.red { color: red; }
-							.blue { color: blue; }
-						</code>
-					</pre>
-					<pre>
-						<code data-trim>
-							<div class="blue red">This will be blue</div>
-							<div class="red blue">This will be blue</div>
-						</code>
-					</pre>
-					<p>Order in HTML doesn't matter. Order in CSS does.</p>
-				</section>
-			</section>
-			<section>
-				<h3>Audit your app's performance</h3>
-				<p>using Chrome dev tools</p>
-			</section>
-			<section>
-				<h3>Fin.</h3>
-			</section>
 		</div>
 	</div>
 
